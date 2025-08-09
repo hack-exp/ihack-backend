@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import api_router
 from app.core.config import settings
 
-app = FastAPI(title="zerone-quest-backend")
+app = FastAPI(title="ihack-backend")
 
 app.add_middleware(
     CORSMiddleware,

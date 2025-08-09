@@ -20,8 +20,8 @@ class Settings(BaseSettings):
     DATABASE_HOST: str = decouple_conf('DATABASE_HOST')
     DATABASE_PORT: int = decouple_conf('DATABASE_PORT')
     DATABASE_NAME: str = decouple_conf('DATABASE_NAME')
-    SQL_DATABASE_URI: Optional[PostgresDsn] = None
-
+    SQL_DATABASE_URI: Optional[PostgresDsn] = None  
+    GROQ_API_KEY: str = decouple_conf("GROQ_API_KEY")
     MAIL_USERNAME: str = decouple_conf("MAIL_USERNAME")
     MAIL_PASSWORD: str = decouple_conf("MAIL_PASSWORD")
     MAIL_FROM: str = decouple_conf("MAIL_FROM")
