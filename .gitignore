@@ -1,0 +1,42 @@
+# Python virtual environment
+# This is the most important one to ignore!
+venv/
+.venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE-specific settings
+# Visual Studio Code
+.vscode/
+# PyCharm
+.idea/
+
+# Operating System files
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+
+# Build and distribution artifacts
+build/
+dist/
+*.egg-info/
+*.so
+*.egg
+
+# Log files
+*.log
+logs/
+
+# Secrets and environment variables
+# CRITICAL: Never commit your .env file
+.env
+
+# FAISS index and pickled documents
+# It's better to rebuild these from the source data than to store large binary files in git
+*.faiss
+*.pkl

@@ -1,28 +1,37 @@
 from app.services.graph_state import AgentState
-from app.llm_provider import llm # Assuming you have a central llm object
+from app.llm_provider import llm
+from app.api.tools.medical_rag_tool import medical_rag_tool # <-- Import your RAG tool
 
 async def diagnosis_agent(state: AgentState):
     """
-    Analyzes the user's message to identify potential medical conditions.
+    Uses the RAG tool to find relevant medical data and then asks the LLM
+    to form a diagnosis based on that data.
     """
     print("---AGENT: DIAGNOSIS---")
     
-    # THE FIX: Use dot notation to access the messages list
     user_message = state.messages[-1].content
 
-    # Create a focused prompt for this specific task
-    prompt = f"""
-You are a medical diagnosis expert. Analyze the following user message to identify key symptoms and list potential medical conditions.
-Do not generate a full response. Simply list the possible conditions.
+    # 1. Use the RAG tool to retrieve relevant context from your private data
+    retrieved_context = medical_rag_tool.retrieve(query=user_message)
 
-User message: "{user_message}"
+    # 2. Create a new, context-aware prompt for the LLM
+    prompt = f"""You are a medical diagnosis expert.
+Use ONLY the following retrieved medical records to analyze the user's symptoms and list potential conditions.
+Do not use any outside knowledge.
 
-Potential Conditions:
+--- RETRIEVED MEDICAL RECORDS ---
+{retrieved_context}
+---------------------------------
+
+User's Symptoms: "{user_message}"
+
+Based on the records provided, what are the most likely potential conditions?
 """
 
+    # 3. Ask the LLM (LM Studio) to analyze the retrieved context
     response = await llm.ainvoke(prompt)
     
     print(f"Diagnosis Found: {response.content}")
 
-    # Update the state with the findings from this agent
+    # 4. Update the state with the findings
     return {"diagnosis": response.content}
