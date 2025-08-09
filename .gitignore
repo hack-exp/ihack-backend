@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Python virtual environment
 # This is the most important one to ignore!
 venv/
@@ -40,3 +41,27 @@ logs/
 # It's better to rebuild these from the source data than to store large binary files in git
 *.faiss
 *.pkl
+=======
+logs
+.DS_Store
+._*
+
+*.log
+*.pot
+*.pyc
+
+
+uploads/
+
+# Environments #
+.env
+.venv
+env/
+venv/
+.vscode
+.idea
+index.html
+dump.rdb
+
+test_main.http
+>>>>>>> e42d14bcce189e4114b6581f0ceec913f0785a20
