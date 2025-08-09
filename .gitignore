@@ -1,0 +1,22 @@
+logs
+.DS_Store
+._*
+
+*.log
+*.pot
+*.pyc
+
+
+uploads/
+
+# Environments #
+.env
+.venv
+env/
+venv/
+.vscode
+.idea
+index.html
+dump.rdb
+
+test_main.http
